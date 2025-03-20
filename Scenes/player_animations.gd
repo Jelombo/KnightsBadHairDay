@@ -9,6 +9,12 @@ const MOVEMENT_TO_IDLE = {
 	"right_walk": "right_idle"
 }
 
+func attack_Animation():
+	play("attack")
+	
+func ability_Use_Animation():
+	play("ability_use")
+
 func play_movement_animation(velocity: Vector2):
 	if velocity.x > 0:
 		play("right_walk")

@@ -76,9 +76,11 @@ position = Vector2(116, 13)
 position = Vector2(-1, -4)
 zoom = Vector2(3, 3)
 
-[node name="healthBar" type="ProgressBar" parent="player"]
-offset_left = 44.0
-offset_top = 66.0
-offset_right = 184.0
-offset_bottom = 93.0
+[node name="abilityBar" type="ProgressBar" parent="player"]
+offset_left = 117.0
+offset_top = 77.0
+offset_right = 188.0
+offset_bottom = 104.0
+scale = Vector2(0.989613, 0.848668)
 page = 1.0
+value = 99.0

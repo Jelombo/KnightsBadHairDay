@@ -1,8 +1,24 @@
-[gd_scene load_steps=26 format=3 uid="uid://hr8vikfj7c3m"]
+[gd_scene load_steps=30 format=3 uid="uid://hr8vikfj7c3m"]
 
 [ext_resource type="Script" path="res://Script/player.gd" id="1_7uckr"]
 [ext_resource type="Texture2D" uid="uid://c2f1npu6kbpce" path="res://Assets/SpriteSheet.png" id="2_046l0"]
 [ext_resource type="Script" path="res://Scenes/player_animations.gd" id="3_n8lno"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y4cpp"]
+atlas = ExtResource("2_046l0")
+region = Rect2(0, 96, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bqufi"]
+atlas = ExtResource("2_046l0")
+region = Rect2(32, 96, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ncg3i"]
+atlas = ExtResource("2_046l0")
+region = Rect2(16, 96, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_31nsg"]
+atlas = ExtResource("2_046l0")
+region = Rect2(48, 96, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_eb1j4"]
 atlas = ExtResource("2_046l0")
@@ -86,6 +102,28 @@ region = Rect2(48, 64, 16, 16)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_x5p2c"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y4cpp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bqufi")
+}],
+"loop": true,
+"name": &"ability_use",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ncg3i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_31nsg")
+}],
+"loop": true,
+"name": &"attack",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_eb1j4")
@@ -195,9 +233,10 @@ script = ExtResource("1_7uckr")
 [node name="playerAnimations" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -3)
 sprite_frames = SubResource("SpriteFrames_x5p2c")
-animation = &"back_walk"
+animation = &"ability_use"
 autoplay = "front_idle"
-frame_progress = 0.446203
+frame = 1
+frame_progress = 0.864141
 script = ExtResource("3_n8lno")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
