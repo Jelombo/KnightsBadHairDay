@@ -1,8 +1,8 @@
-[gd_scene load_steps=30 format=3 uid="uid://hr8vikfj7c3m"]
+[gd_scene load_steps=31 format=3 uid="uid://hr8vikfj7c3m"]
 
-[ext_resource type="Script" path="res://Script/player.gd" id="1_7uckr"]
+[ext_resource type="Script" uid="uid://b28bkp1k2l2el" path="res://Script/player.gd" id="1_7uckr"]
 [ext_resource type="Texture2D" uid="uid://c2f1npu6kbpce" path="res://Assets/SpriteSheet.png" id="2_046l0"]
-[ext_resource type="Script" path="res://Scenes/player_animations.gd" id="3_n8lno"]
+[ext_resource type="Script" uid="uid://djvutrdnvmfyo" path="res://Script/player_animations.gd" id="3_n8lno"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_y4cpp"]
 atlas = ExtResource("2_046l0")
@@ -227,6 +227,8 @@ animations = [{
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_3sk37"]
 
+[sub_resource type="GDScript" id="GDScript_6t5aa"]
+
 [node name="player" type="CharacterBody2D"]
 script = ExtResource("1_7uckr")
 
@@ -239,12 +241,12 @@ frame = 1
 frame_progress = 0.864141
 script = ExtResource("3_n8lno")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
-position = Vector2(2, 1)
+[node name="physicsCollider" type="CollisionShape2D" parent="."]
+position = Vector2(0, -1)
 shape = SubResource("CircleShape2D_3sk37")
 
 [node name="dashTimer" type="Timer" parent="."]
 wait_time = 0.25
+script = SubResource("GDScript_6t5aa")
 
 [connection signal="timeout" from="dashTimer" to="." method="_on_dash_timer_timeout"]

@@ -1,8 +1,13 @@
-[gd_scene load_steps=8 format=3 uid="uid://pys20pev2r4u"]
+[gd_scene load_steps=15 format=3 uid="uid://pys20pev2r4u"]
 
 [ext_resource type="Texture2D" uid="uid://b13i5xd6nqgu8" path="res://Assets/spikedamagetest.png" id="1_eh6ql"]
 [ext_resource type="Texture2D" uid="uid://sic1rf1d50gw" path="res://Assets/gridmap1.png" id="1_trtv6"]
 [ext_resource type="PackedScene" uid="uid://hr8vikfj7c3m" path="res://Scenes/player.tscn" id="2_g5nax"]
+[ext_resource type="Script" uid="uid://csxar8ds6herf" path="res://Script/ability_bar.gd" id="4_3dryh"]
+[ext_resource type="Script" uid="uid://8ulyk3co4cet" path="res://Script/health_bar.gd" id="5_i6g32"]
+[ext_resource type="Texture2D" uid="uid://3jrmsau07v1n" path="res://Assets/enemyTest.png" id="6_1l0tm"]
+[ext_resource type="Script" uid="uid://lvlwmf8vt1wc" path="res://Scenes/damagecollider.gd" id="6_v158k"]
+[ext_resource type="Script" uid="uid://caeavuqysw6xc" path="res://Scenes/collision_shape_2d.gd" id="8_v158k"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_pli0n"]
 
@@ -60,6 +65,11 @@ physics_layer_0/physics_material = SubResource("PhysicsMaterial_pli0n")
 sources/1 = SubResource("TileSetAtlasSource_n572j")
 sources/2 = SubResource("TileSetAtlasSource_rn1vn")
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_h4fw4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ldgsr"]
+size = Vector2(8, 28)
+
 [node name="Game" type="Node2D"]
 
 [node name="Node2D" type="Node2D" parent="."]
@@ -84,3 +94,32 @@ offset_bottom = 104.0
 scale = Vector2(0.989613, 0.848668)
 page = 1.0
 value = 99.0
+script = ExtResource("4_3dryh")
+
+[node name="healthBar" type="ProgressBar" parent="player"]
+offset_left = 116.0
+offset_top = 48.0
+offset_right = 186.0
+offset_bottom = 75.0
+value = 99.0
+script = ExtResource("5_i6g32")
+
+[node name="damagecollider" type="Area2D" parent="player" groups=["damager"]]
+script = ExtResource("6_v158k")
+
+[node name="coliderDamage" type="CollisionShape2D" parent="player/damagecollider"]
+position = Vector2(0, -1)
+shape = SubResource("CircleShape2D_h4fw4")
+
+[node name="EnemyTest" type="Sprite2D" parent="."]
+position = Vector2(48, 83)
+scale = Vector2(0.0233381, 0.023338)
+texture = ExtResource("6_1l0tm")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyTest" groups=["damager"]]
+position = Vector2(0, 42.8484)
+scale = Vector2(42.8485, 42.8485)
+shape = SubResource("RectangleShape2D_ldgsr")
+script = ExtResource("8_v158k")
+
+[connection signal="body_entered" from="player/damagecollider" to="player/damagecollider" method="_on_body_entered"]
